@@ -1,0 +1,53 @@
+<?php
+
+$fname = filter_input(INPUT_POST, 'fname');
+$lname = filter_input(INPUT_POST, 'lname');
+$age = filter_input(INPUT_POST, 'age');
+$gender = filter_input(INPUT_POST, 'gender');
+$country = filter_input(INPUT_POST, 'country');
+$country_code = filter_input(INPUT_POST, 'country_code');
+$ql = filter_input(INPUT_POST, 'ql');
+$email = filter_input(INPUT_POST, 'email');
+$occ = filter_input(INPUT_POST, 'occ');
+$skil = filter_input(INPUT_POST, 'skil');
+
+
+
+if(!empty($fname)) {
+   if (!empty($lname)) {
+       $host = "localhost";
+       $dbusername = "admin";
+       $dbpassword = "admin";
+       $dbname = "user" ;
+
+$conn = new mysqli ($host, $fname, $lname, $age, $gender, $country, $country_code, $ql, $email, $occ, $skil);
+if (mysqli_connec t_error()) {
+   ( die('Connect Error ('
+	mysqli_connect_errno()).')'
+	mysqli_connect_error());	
+
+   }
+  else {
+	$sql = "INSERT INTO form (lname, fname, age, gender, country, country_code, ql, email, occ, skil) values ('$fname', '$lname', '$age', '$gender', '$country', '$country_code', '$ql', '$email', '$occ', '$skil')";
+if ($conn->query($sql)) {
+	echo "New record is inserted successfully";
+
+
+}
+ else {
+	echo "Error: ".$sql . "<br>". $
+		$conn->error;  
+	}    
+	$conn->clase();
+      }
+  }
+else{
+	echo "Field should not be empty";
+	die();
+	}
+}
+else {
+	echo "Field should not be empty";
+	die();
+}
+?>
